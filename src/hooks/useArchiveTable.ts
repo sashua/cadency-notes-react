@@ -5,7 +5,6 @@ import { formatDate, getDates } from "../lib/helpers";
 import {
   deleteAllArchivedNotes,
   deleteNote,
-  openEditor,
   selectArchivedNotes,
   unarchiveAllNotes,
   unarchiveNote,
@@ -51,10 +50,6 @@ export function useArchiveTable(): TableProps {
             getDates(content).join(", "),
           ],
           actions: [
-            {
-              icon: "icon-edit",
-              onClick: () => dispatch(openEditor(id)),
-            },
             {
               icon: "icon-unarchive",
               onClick: () => dispatch(unarchiveNote(id)),

@@ -1,4 +1,4 @@
-export type Icon =
+export type IconName =
   | "icon-add"
   | "icon-save"
   | "icon-close"

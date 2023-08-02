@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Editor, Modal } from "./components";
+import { Table } from "./components/Table";
+import { useArchiveTable, useCategoriesTable, useNotesTable } from "./hooks";
 import {
   closeArchive,
   closeEditor,
@@ -13,6 +15,9 @@ export function App() {
   const dispatch = useDispatch();
   const archiveOpened = useSelector(selectArchiveOpened);
   const editorOpened = useSelector(selectEditorOpened);
+  const notesTableProps = useNotesTable();
+  const categoriesTableProps = useCategoriesTable();
+  const archiveTableProps = useArchiveTable();
 
   return (
     <main className="max-w-6xl px-4 py-10 mx-auto text-slate-600">
@@ -25,6 +30,7 @@ export function App() {
             New note
           </Button>
         </div>
+        <Table {...notesTableProps} />
       </section>
 
       <section id="categories">
@@ -34,6 +40,7 @@ export function App() {
             Open archive
           </Button>
         </div>
+        <Table {...categoriesTableProps} />
       </section>
 
       {editorOpened && (
@@ -47,8 +54,12 @@ export function App() {
       )}
 
       {archiveOpened && (
-        <Modal title="Archive" onClose={() => dispatch(closeArchive())}>
-          !!!
+        <Modal
+          className="w-full max-w-6xl"
+          title="Archive"
+          onClose={() => dispatch(closeArchive())}
+        >
+          <Table {...archiveTableProps} />
         </Modal>
       )}
     </main>

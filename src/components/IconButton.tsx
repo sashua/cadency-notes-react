@@ -1,10 +1,10 @@
 import clsx from "clsx";
 import { ComponentPropsWithoutRef } from "react";
 import sprite from "../assets/icons.svg";
-import { Icon } from "../interfaces";
+import { IconName } from "../interfaces";
 
 interface IconButtonProps extends ComponentPropsWithoutRef<"button"> {
-  icon: Icon;
+  icon: IconName;
 }
 
 export function IconButton({ icon, className, ...props }: IconButtonProps) {

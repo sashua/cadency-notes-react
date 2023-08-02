@@ -7,7 +7,7 @@ interface IconButtonProps extends ComponentPropsWithoutRef<"button"> {
   icon: IconName;
 }
 
-export function IconButton({ icon, className, ...props }: IconButtonProps) {
+export function IconButton({ className, icon, ...props }: IconButtonProps) {
   return (
     <button
       className={clsx(

@@ -23,7 +23,10 @@ export const selectCategoriesWithStats = createSelector(
   (categories, notes) => {
     const notesCount = countNotes(notes);
     return categories.map((category) => {
-      const { active, archived } = notesCount[category.id] ?? {};
+      const { active, archived } = notesCount[category.id] ?? {
+        active: 0,
+        archived: 0,
+      };
       return { ...category, active, archived } as CategoryWithStats;
     });
   }

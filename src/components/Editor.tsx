@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Input, Select, TextArea } from ".";
 import { formatDate } from "../lib/helpers";
-import { closeEditor, createNote } from "../redux";
+import { closeEditor, createNote, editNote } from "../redux";
 import { selectCategories, selectEditingNote } from "../redux/selectors";
 
 export function Editor() {
@@ -22,7 +22,11 @@ export function Editor() {
     const name = formData.get("name") as string;
     const categoryId = formData.get("category") as string;
     const content = formData.get("content") as string;
-    dispatch(createNote({ name, categoryId, content }));
+    dispatch(
+      note
+        ? editNote({ name, categoryId, content })
+        : createNote({ name, categoryId, content })
+    );
   };
 
   return (
@@ -59,7 +63,7 @@ export function Editor() {
 
       <div className="flex items-center gap-4">
         <p className="mr-auto font-semibold text-slate-400">{createdAt}</p>
-        <Button icon="icon-save" type="submit">
+        <Button variant="primary" icon="icon-save" type="submit">
           {note ? "Save" : "Create"}
         </Button>
         <Button icon="icon-close" type="reset">

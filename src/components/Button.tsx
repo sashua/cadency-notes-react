@@ -4,14 +4,25 @@ import sprite from "../assets/icons.svg";
 import { IconName } from "../interfaces";
 
 interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
+  variant?: "primary" | "secondary";
   icon: IconName;
 }
 
-export function Button({ icon, className, children, ...props }: ButtonProps) {
+export function Button({
+  className,
+  variant = "secondary",
+  icon,
+  children,
+  ...props
+}: ButtonProps) {
   return (
     <button
       className={clsx(
-        "group flex items-center gap-1.5 pr-2 pl-1 py-1 border rounded-md border-current text-slate-500 hover:text-slate-600 active:text-slate-500 transition-colors",
+        "group flex items-center gap-1.5 pr-2 pl-1 py-1 rounded-md border-current text-slate-500 hover:text-slate-600 active:text-slate-500 transition-colors",
+        {
+          "border-2": variant === "primary",
+          border: variant === "secondary",
+        },
         className
       )}
       {...props}
